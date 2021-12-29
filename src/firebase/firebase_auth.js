@@ -1,4 +1,4 @@
-import config from './firebase_config.js'
+import firebase from './firebase_config.js'
 import {
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
@@ -7,9 +7,6 @@ import {
     GoogleAuthProvider,
     onAuthStateChanged,
 } from 'firebase/auth'
-
-const { firebaseConfig } = config
-const firebase = { ...firebaseConfig }
 
 const auth = firebase.auth
 
