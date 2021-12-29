@@ -1,11 +1,16 @@
-import Login from './components/Login/Login'
+import AppRoutes from './components/AppRoutes/AppRoutes'
+import CSSNormalize from './components/CSSNormalize/CSSNormalize'
+import Layout from './components/Layout/Layout'
+
 import './styles/App.css'
 
 function App() {
     return (
-        <div className='App'>
-            <Login />
-        </div>
+        <CSSNormalize>
+            <Layout>
+                <AppRoutes />
+            </Layout>
+        </CSSNormalize>
     )
 }
 
