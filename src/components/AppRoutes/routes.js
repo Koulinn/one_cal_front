@@ -2,6 +2,7 @@ import Login from '../../views/Login/Login'
 import Register from '../../views/Register/Register'
 import Home from '../../views/Home/Home'
 import Calculator from '../../views/Calculator/Calculator'
+import NotFound from '../../views/NotFound/NotFound'
 
 const routes = [
     {
@@ -19,6 +20,10 @@ const routes = [
     {
         path: '/calc',
         component: Calculator,
+    },
+    {
+        path: '*',
+        component: NotFound,
     },
 ]
 
