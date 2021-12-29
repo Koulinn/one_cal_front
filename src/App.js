@@ -1,7 +1,7 @@
 import AppRoutes from './components/AppRoutes/AppRoutes'
 import CSSNormalize from './components/CSSNormalize/CSSNormalize'
 import { ThemeProvider } from '@mui/material/styles'
-import Layout from './components/Layout/Layout'
+import LayoutExternal from './components/Layouts/LayoutExternal'
 import { BrowserRouter } from 'react-router-dom'
 import './styles/App.css'
 import TopNavBar from './components/TopNavBar/TopNavBar'
@@ -12,10 +12,10 @@ function App() {
         <CSSNormalize>
             <ThemeProvider theme={theme}>
                 <BrowserRouter>
-                    <Layout>
+                    <LayoutExternal>
                         <TopNavBar />
                         <AppRoutes />
-                    </Layout>
+                    </LayoutExternal>
                 </BrowserRouter>
             </ThemeProvider>
         </CSSNormalize>

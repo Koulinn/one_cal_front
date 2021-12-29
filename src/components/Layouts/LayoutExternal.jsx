@@ -1,7 +1,7 @@
 import { Grid } from '@mui/material'
 import React from 'react'
 
-function Layout({ children }) {
+function LayoutExternal({ children }) {
     return (
         <Grid container spacing={2}>
             {children}
@@ -9,4 +9,4 @@ function Layout({ children }) {
     )
 }
 
-export default Layout
+export default LayoutExternal
