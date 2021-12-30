@@ -20,11 +20,7 @@ axios.interceptors.request.use(
 )
 
 const createUser = async () => {
-    try {
-        return await axios.post(`${SERVER_URL}/user`)
-    } catch (error) {
-        return error
-    }
+    return await axios.post(`${SERVER_URL}/user`)
 }
 
 const requestHandlers = {
