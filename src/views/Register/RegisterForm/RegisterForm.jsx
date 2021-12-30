@@ -2,8 +2,8 @@ import React from 'react'
 import Box from '@mui/material/Box'
 import TextField from '@mui/material/TextField'
 import { Button } from '@mui/material'
-
 import useRegisterForm from './useRegisterForm.js'
+import RegisterAlerts from './RegisterAlerts.jsx'
 
 function RegisterForm() {
     const [
@@ -25,7 +25,7 @@ function RegisterForm() {
                 fullWidth
                 type='email'
                 error={!isValidEmail}
-                onChange={(e) => emailValidation(e.target.validity.valid)}
+                onChange={(e) => emailValidation(e)}
             />
             <TextField
                 id='password'
@@ -37,6 +37,7 @@ function RegisterForm() {
                 error={!isValidPassword}
                 helperText={passwordMsg}
             />
+            <RegisterAlerts requestStatus={requestStatus} />
             <Button type='submit' disabled={!isValidPassword || !isValidEmail}>
                 Join!
             </Button>
