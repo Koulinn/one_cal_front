@@ -8,7 +8,7 @@ const {
     helpers: { addSpaceAfterDot },
 } = lib
 
-const { registerUser } = firebase
+const { registerUser, loginWithGoogle } = firebase
 
 const { createUser } = requestHandlers
 
@@ -112,6 +112,34 @@ const useRegisterForm = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
+    const handleGoogleSignUp = useCallback(async () => {
+        try {
+            const res = await loginWithGoogle()
+            if (res.user.uid) {
+                const resServer = await createUser()
+                if (resServer.status === 201) {
+                    setRequestStatus('success')
+                    setTimeout(() => navigateTo('/calc'), 5000)
+                    return
+                }
+            } else {
+                setRequestStatus('failure')
+
+                setTimeout(() => setRequestStatus(''), 5000)
+            }
+        } catch (error) {
+            if (error.response.data.msg === 'E-mail already registered') {
+                setRequestStatus('success')
+                setTimeout(() => navigateTo('/calc'), 5000)
+            } else {
+                setRequestStatus('failure')
+
+                setTimeout(() => setRequestStatus(''), 5000)
+            }
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
+
     return [
         requestStatus,
         handleRegisterForm,
@@ -120,6 +148,7 @@ const useRegisterForm = () => {
         passwordMsg,
         emailValidation,
         isValidEmail,
+        handleGoogleSignUp,
     ]
 }
 

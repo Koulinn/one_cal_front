@@ -4,6 +4,7 @@ import TextField from '@mui/material/TextField'
 import { Button } from '@mui/material'
 import useRegisterForm from './useRegisterForm.js'
 import RegisterAlerts from './RegisterAlerts.jsx'
+import GoogleButton from 'react-google-button'
 
 function RegisterForm() {
     const [
@@ -14,6 +15,7 @@ function RegisterForm() {
         passwordMsg,
         emailValidation,
         isValidEmail,
+        handleGoogleSignUp,
     ] = useRegisterForm()
 
     return (
@@ -41,6 +43,8 @@ function RegisterForm() {
             <Button type='submit' disabled={!isValidPassword || !isValidEmail}>
                 Join!
             </Button>
+            or
+            <GoogleButton onClick={handleGoogleSignUp} />
         </Box>
     )
 }
