@@ -1,9 +1,16 @@
 import { useState, useCallback, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import lib from '../../../lib/index.js'
+import requestHandlers from '../../../lib/requestHandlers.js'
+import firebase from '../../../firebase/firebase_auth.js'
 
 const {
     helpers: { addSpaceAfterDot },
 } = lib
+
+const { registerUser } = firebase
+
+const { createUser } = requestHandlers
 
 const useRegisterForm = () => {
     const [requestStatus, setRequestStatus] = useState('')
@@ -11,6 +18,7 @@ const useRegisterForm = () => {
     const [isValidEmail, setIsValidEmail] = useState(true)
     const [passwordMsg, setPasswordMsg] = useState('')
     const [passwordMissingRule, setPasswordMissingRule] = useState('')
+    const navigateTo = useNavigate()
 
     const checkPasswordValidity = (errorMessage) => {
         if (errorMessage === '') {
@@ -66,18 +74,42 @@ const useRegisterForm = () => {
         setPasswordMsg(transformedMsg)
     }
 
-    const emailValidation = (isValid) => {
+    const emailValidation = (e) => {
+        const isValid = e.target.validity.valid
+
         setIsValidEmail(isValid)
     }
 
     const handleRegisterForm = useCallback(async (e) => {
-        console.log('inside handle register form')
         e.preventDefault()
+
         try {
-            console.log(e)
+            setRequestStatus('pending')
+
+            const email = e.target[0].value
+            const password = e.target[1].value
+
+            await registerUser(email, password)
+            const res = await createUser()
+
+            if (res.status === 201) {
+                setRequestStatus('success')
+                setTimeout(() => navigateTo('/calc'), 5000)
+            } else {
+                setRequestStatus('failure')
+
+                setTimeout(() => setRequestStatus(''), 5000)
+            }
         } catch (error) {
-            console.log(error)
+            if (error.code === 'auth/email-already-in-use') {
+                setRequestStatus('emailExistent')
+            } else {
+                setRequestStatus('failure')
+            }
+
+            setTimeout(() => setRequestStatus(''), 5000)
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     return [
