@@ -122,20 +122,20 @@ const useRegisterForm = () => {
                     setTimeout(() => navigateTo('/calc'), 5000)
                     return
                 }
+                if (resServer.data.msg === 'E-mail already registered') {
+                    setRequestStatus('success')
+                    setTimeout(() => navigateTo('/calc'), 5000)
+                    return
+                }
             } else {
                 setRequestStatus('failure')
 
                 setTimeout(() => setRequestStatus(''), 5000)
             }
         } catch (error) {
-            if (error.response.data.msg === 'E-mail already registered') {
-                setRequestStatus('success')
-                setTimeout(() => navigateTo('/calc'), 5000)
-            } else {
-                setRequestStatus('failure')
+            setRequestStatus('failure')
 
-                setTimeout(() => setRequestStatus(''), 5000)
-            }
+            setTimeout(() => setRequestStatus(''), 5000)
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
