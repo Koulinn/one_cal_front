@@ -1,16 +1,14 @@
 import { useState, useCallback, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import lib from '../../../lib/index.js'
-import requestHandlers from '../../../lib/requestHandlers.js'
 import firebase from '../../../firebase/firebase_auth.js'
 
 const {
-    helpers: { addSpaceAfterDot },
+    helpers: { addSpaceAfterDot, resetRequestStatus },
+    requestHandlers: { createUser },
 } = lib
 
 const { registerUser, loginWithGoogle } = firebase
-
-const { createUser } = requestHandlers
 
 const useRegisterForm = () => {
     const [requestStatus, setRequestStatus] = useState('')
@@ -97,8 +95,7 @@ const useRegisterForm = () => {
                 setTimeout(() => navigateTo('/calc'), 5000)
             } else {
                 setRequestStatus('failure')
-
-                setTimeout(() => setRequestStatus(''), 5000)
+                resetRequestStatus(setRequestStatus)
             }
         } catch (error) {
             if (error.code === 'auth/email-already-in-use') {
@@ -106,8 +103,7 @@ const useRegisterForm = () => {
             } else {
                 setRequestStatus('failure')
             }
-
-            setTimeout(() => setRequestStatus(''), 5000)
+            resetRequestStatus(setRequestStatus)
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
@@ -130,12 +126,12 @@ const useRegisterForm = () => {
             } else {
                 setRequestStatus('failure')
 
-                setTimeout(() => setRequestStatus(''), 5000)
+                resetRequestStatus(setRequestStatus)
             }
         } catch (error) {
             setRequestStatus('failure')
 
-            setTimeout(() => setRequestStatus(''), 5000)
+            resetRequestStatus(setRequestStatus)
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
