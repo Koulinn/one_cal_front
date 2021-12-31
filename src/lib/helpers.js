@@ -4,7 +4,7 @@ const addSpaceAfterDot = (arrMsg) => {
         if (i === arrMsg.length - 1) {
             message += arrMsg[i] + '.'
         } else {
-            message += arrMsg[i] + ' '
+            message += arrMsg[i] + '. '
         }
     }
 

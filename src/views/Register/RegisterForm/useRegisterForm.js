@@ -6,6 +6,7 @@ import firebase from '../../../firebase/firebase_auth.js'
 const {
     helpers: { addSpaceAfterDot, resetRequestStatus },
     requestHandlers: { createUser },
+    validators: { passwordValidation },
 } = lib
 
 const { registerUser, loginWithGoogle } = firebase
@@ -26,25 +27,8 @@ const useRegisterForm = () => {
         }
     }
 
-    const passwordValidation = (value) => {
-        let missingPasswordRule = ''
-        if (!value.match(/[A-Z]/g)) {
-            missingPasswordRule += ' letter'
-        }
-
-        if (!value.match(/[0-9]/g)) {
-            missingPasswordRule += ' number'
-        }
-
-        if (value.length < 6) {
-            missingPasswordRule += ' size'
-        }
-        setPasswordMissingRule(missingPasswordRule)
-        return missingPasswordRule
-    }
-
     const handlePassword = (value) => {
-        passwordValidation(value)
+        passwordValidation(value, setPasswordMissingRule)
     }
 
     useEffect(() => {
@@ -59,10 +43,10 @@ const useRegisterForm = () => {
     const generatePasswordErrorMessage = (msg) => {
         let errorMsg = []
         if (msg.includes('letter')) {
-            errorMsg.push('Missing at least a capital letter.')
+            errorMsg.push('Missing at least a capital letter')
         }
         if (msg.includes('number')) {
-            errorMsg.push('Missing at least a number.')
+            errorMsg.push('Missing at least a number')
         }
         if (msg.includes('size')) {
             errorMsg.push('Must have at least 6 characters')
