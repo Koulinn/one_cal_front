@@ -1,7 +1,5 @@
 import React from 'react'
-import Box from '@mui/material/Box'
-import TextField from '@mui/material/TextField'
-import { Button } from '@mui/material'
+import { Button, Box, TextField } from '@mui/material'
 import useRegisterForm from './useRegisterForm.js'
 import RegisterAlerts from './RegisterAlerts.jsx'
 import GoogleButton from 'react-google-button'
@@ -44,7 +42,10 @@ function RegisterForm() {
                 Join!
             </Button>
             or
-            <GoogleButton onClick={handleGoogleSignUp} />
+            <GoogleButton
+                onClick={handleGoogleSignUp}
+                label={'Join with Google'}
+            />
         </Box>
     )
 }
