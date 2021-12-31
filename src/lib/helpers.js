@@ -11,6 +11,10 @@ const addSpaceAfterDot = (arrMsg) => {
     return message
 }
 
-const helpers = { addSpaceAfterDot }
+const resetRequestStatus = (setRequestMessage) => {
+    setTimeout(() => setRequestMessage(''), 5000)
+}
+
+const helpers = { addSpaceAfterDot, resetRequestStatus }
 
 export default helpers
