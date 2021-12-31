@@ -31,9 +31,17 @@ const createUser = async () => {
         }
     }
 }
+const getUserData = async () => {
+    try {
+        return await axios.get(`${SERVER_URL}/user`)
+    } catch (error) {
+        return error
+    }
+}
 
 const requestHandlers = {
     createUser,
+    getUserData,
 }
 
 export default requestHandlers
