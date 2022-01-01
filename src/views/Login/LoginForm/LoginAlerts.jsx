@@ -18,6 +18,14 @@ function LoginAlerts({ requestStatus }) {
             />
         )
     }
+    if (requestStatus === 'userNotExists') {
+        return (
+            <AlertMsg
+                severity='error'
+                text={`Sorry this user is not registered with OneKcal, signUp first`}
+            />
+        )
+    }
 
     if (requestStatus === 'failure') {
         return (
