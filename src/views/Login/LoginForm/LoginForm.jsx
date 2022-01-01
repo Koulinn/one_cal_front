@@ -23,7 +23,8 @@ function LoginForm() {
                 variant='standard'
                 fullWidth
                 type='email'
-                value={email}
+                // value={email}
+                value={'test@mail.com'}
                 onChange={(e) => setEmail(e.target.value)}
             />
             <TextField
@@ -31,8 +32,8 @@ function LoginForm() {
                 label='Password'
                 variant='standard'
                 fullWidth
-                value={password}
-                type={'password'}
+                // value={password}
+                type={'123456A'}
                 onChange={(e) => setPassword(e.target.value)}
             />
             <LoginAlerts requestStatus={requestStatus} />
