@@ -46,8 +46,16 @@ const useLoginForm = () => {
             const res = await loginWithGoogle()
 
             if (res.user.uid) {
-                setRequestStatus('success')
-                setTimeout(() => navigateTo('/calc'), 5000)
+                const res = await getUserData()
+
+                if (res.data?.success) {
+                    setRequestStatus('success')
+                    setTimeout(() => navigateTo('/calc'), 5000)
+                } else {
+                    setRequestStatus('userNotExists')
+                    resetRequestStatus(setRequestStatus)
+                    return
+                }
             } else {
                 setRequestStatus('failure')
                 resetRequestStatus(setRequestStatus)
