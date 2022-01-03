@@ -25,7 +25,6 @@ function useUser() {
                 setRequestStatus('failure')
                 resetRequestStatus(setRequestStatus)
             }
-            console.log(res)
         } catch (error) {
             setRequestStatus('serverFailure')
             resetRequestStatus(setRequestStatus)
