@@ -6,7 +6,9 @@ function LayoutInternal({ children }) {
     return (
         <Grid item xs={12}>
             <Container>
-                <Container sx={layoutInternalCSS}>{children}</Container>
+                <Grid container sx={layoutInternalCSS}>
+                    {children}
+                </Grid>
             </Container>
         </Grid>
     )
