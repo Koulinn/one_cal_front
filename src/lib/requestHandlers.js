@@ -31,6 +31,7 @@ const createUser = async () => {
         }
     }
 }
+
 const getUserData = async () => {
     try {
         return await axios.get(`${SERVER_URL}/user`)
@@ -39,9 +40,18 @@ const getUserData = async () => {
     }
 }
 
+const sendUserMeal = async (body) => {
+    try {
+        return await axios.post(`${SERVER_URL}/meal`, body)
+    } catch (error) {
+        return error
+    }
+}
+
 const requestHandlers = {
     createUser,
     getUserData,
+    sendUserMeal,
 }
 
 export default requestHandlers
