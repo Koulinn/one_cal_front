@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Button, Grid, TextField, Typography } from '@mui/material'
 import { Box } from '@mui/system'
 import AdapterDateFns from '@mui/lab/AdapterDateFns'
@@ -7,13 +7,20 @@ import DateTimePicker from '@mui/lab/DateTimePicker'
 import useCalcForm from './useCalcForm.js'
 import CalcFormAlerts from './CalcFormAlerts.jsx'
 
-function CalcForm() {
+function CalcForm({ sendNewRequest, setSendNewRequest }) {
     const {
         formValues: { name, calories, time_eaten },
         inputHandlers,
         submitForm,
         requestStatus,
     } = useCalcForm()
+
+    useEffect(() => {
+        if (requestStatus === 'success') {
+            setSendNewRequest(!sendNewRequest)
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [requestStatus])
 
     return (
         <Grid item xs={6}>
@@ -46,9 +53,7 @@ function CalcForm() {
                         renderInput={(props) => <TextField {...props} />}
                         label='Time eaten'
                         value={time_eaten}
-                        onChange={(e) =>
-                            inputHandlers(e.target.value, 'time_eaten')
-                        }
+                        onChange={(value) => inputHandlers(value, 'time_eaten')}
                     />
                 </LocalizationProvider>
 
