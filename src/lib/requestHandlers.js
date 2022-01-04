@@ -1,8 +1,10 @@
 import axios from 'axios'
 import firebaseAuth from '../firebase/firebase_config.js'
 import globalVariables from '../app_config/globalEnvVariables.js'
+import helpers from './helpers.js'
 
 const { SERVER_URL } = globalVariables
+const { resetRequestStatus } = helpers
 
 const auth = firebaseAuth.auth
 
@@ -48,10 +50,28 @@ const sendUserMeal = async (body) => {
     }
 }
 
+const getUserMealData = async (setUserMealData, setRequestStatus) => {
+    try {
+        const res = await axios.get(`${SERVER_URL}/meal`)
+        if (res.status === 200) {
+            setUserMealData(res.data)
+            setRequestStatus('success')
+        } else {
+            setRequestStatus('failure')
+            resetRequestStatus(setRequestStatus)
+        }
+    } catch (error) {
+        setRequestStatus('failure')
+        resetRequestStatus(setRequestStatus)
+        return error
+    }
+}
+
 const requestHandlers = {
     createUser,
     getUserData,
     sendUserMeal,
+    getUserMealData,
 }
 
 export default requestHandlers
