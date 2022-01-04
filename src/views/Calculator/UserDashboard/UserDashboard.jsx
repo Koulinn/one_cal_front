@@ -1,12 +1,32 @@
-import { Grid } from '@mui/material'
-import React from 'react'
+import React, { useEffect } from 'react'
+import useUserMealData from '../../../customHooks/useUserMealData/useUserMealData'
+import SimpleDashboard from './SimpleDashboard/SimpleDashboard'
 
-function UserDashboard() {
-    return (
-        <Grid item xs={6}>
-            UserDashboard
-        </Grid>
-    )
+function UserDashboard({ sendNewRequest }) {
+    const { userMealData, requestStatus, callGetUserMealData } =
+        useUserMealData()
+
+    useEffect(() => {
+        callGetUserMealData()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [sendNewRequest])
+
+    if (requestStatus === 'success') {
+        const { calorie_total_today, calorie_total_yesterday } = userMealData
+
+        return (
+            <SimpleDashboard
+                calorie_total_today={
+                    calorie_total_today ? calorie_total_today : false
+                }
+                calorie_total_yesterday={calorie_total_yesterday}
+            />
+        )
+    } else if (requestStatus === 'failure') {
+        return <div>Failure</div>
+    } else {
+        return <div>Loading</div>
+    }
 }
 
 export default UserDashboard
