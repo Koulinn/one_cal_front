@@ -23,7 +23,7 @@ const useCalcForm = () => {
         try {
             setRequestStatus('loading')
             const res = await sendUserMeal(formValues)
-            console.log(res)
+
             if (res.status === 201) {
                 setRequestStatus('success')
                 setFormValues({
