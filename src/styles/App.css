@@ -1,1 +1,29 @@
+.show {
+    color: black;
+    animation-name: fade_shrink;
+    animation-fill-mode: forwards !important;
+    animation-iteration-count: 1 !important;
+    animation-direction: normal !important;
+    animation-delay: 0ms !important;
+    animation-timing-function: cubic-bezier(0.19, 1, 0.22, 1) !important;
+    animation-duration: 3s !important;
+}
+.hide {
+    display: none !important;
+    right: -64px;
+}
 
+@keyframes fade_shrink {
+    from {
+        font-size: 40px;
+        opacity: 1;
+        right: -64px;
+    }
+    to {
+        font-size: 32px;
+        opacity: 0;
+        display: none;
+        right: -24px;
+        top: -2px;
+    }
+}
