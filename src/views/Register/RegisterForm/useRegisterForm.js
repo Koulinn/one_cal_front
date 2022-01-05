@@ -113,6 +113,7 @@ const useRegisterForm = () => {
                 resetRequestStatus(setRequestStatus)
             }
         } catch (error) {
+            console.log(error)
             setRequestStatus('failure')
 
             resetRequestStatus(setRequestStatus)
