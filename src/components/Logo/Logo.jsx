@@ -4,13 +4,13 @@ import assets from '../../assets/index.js'
 import logoCSS from './logoCSS.js'
 
 const {
-    imageLinks: { logo_svg },
+    images: { OneKcalLogo },
 } = assets
 
 function Logo() {
     return (
         <Box sx={logoCSS}>
-            <img src={logo_svg} alt='OneKcal logo' />
+            <OneKcalLogo />
         </Box>
     )
 }
