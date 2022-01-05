@@ -1,6 +1,6 @@
-import imageLinks from './images_links.js'
+import images from './images.js'
 const assets = {
-    imageLinks,
+    images,
 }
 
 export default assets
