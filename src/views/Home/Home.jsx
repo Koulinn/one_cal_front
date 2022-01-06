@@ -3,6 +3,7 @@ import useUser from '../../customHooks/useUser/useUser.js'
 import { useNavigate } from 'react-router-dom'
 import { Container, Typography } from '@mui/material'
 import homeCSS from './homeCSS.js'
+import { Box } from '@mui/system'
 
 function Home() {
     const { requestStatus } = useUser()
@@ -23,13 +24,13 @@ function Home() {
 
     return (
         <Container id='home' sx={homeCSS}>
-            <Typography
-                component={'h1'}
-                variant={'h1'}
-                sx={{ backgroundColor: 'transparent' }}
-            >
-                Let's count those kcalories
+            <Typography component={'h1'} variant={'h1'} textAlign={'center'}>
+                Let's burn kcalories
             </Typography>
+
+            <button className='main-CTA cursor-pointer'>
+                I want to control calories{' '}
+            </button>
         </Container>
     )
 }
