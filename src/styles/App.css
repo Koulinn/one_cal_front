@@ -2,25 +2,21 @@ html {
     background-color: #f3faf4;
 }
 
-#home {
+#layoutExternal {
     position: relative;
-    height: 70vh;
+    height: 100vh;
     background-image: url('../assets/SVGs/OneKcal_Illus_Home.svg');
     overflow: visible;
     background-position: center;
-    background-size: cover;
-    background-position-y: -64px;
+    background-position-x: 64px;
     background-repeat: no-repeat;
-}
-
-#home > svg {
-    position: absolute;
-    top: 0;
-    right: auto;
-    opacity: 0.3;
-    width: 100%;
-    height: 720px;
-    z-index: -1;
+    animation-name: home_BG;
+    animation-fill-mode: forwards !important;
+    animation-iteration-count: 1 !important;
+    animation-direction: normal !important;
+    animation-delay: 0ms !important;
+    animation-timing-function: cubic-bezier(0.19, 1, 0.22, 1) !important;
+    animation-duration: 3s !important;
 }
 
 .show {
@@ -38,6 +34,20 @@ html {
     right: -64px;
 }
 
+#home {
+    /* overflow-y: hidden; */
+}
+
+#home h1 {
+    animation-name: home_h1;
+    animation-fill-mode: forwards !important;
+    animation-iteration-count: 1 !important;
+    animation-direction: normal !important;
+    animation-delay: 0ms !important;
+    animation-timing-function: cubic-bezier(0.19, 1, 0.22, 1) !important;
+    animation-duration: 5s !important;
+}
+
 @keyframes fade_shrink {
     from {
         font-size: 40px;
@@ -53,6 +63,63 @@ html {
     }
 }
 
+@keyframes home_BG {
+    from {
+        background-position-x: -128px;
+        background-size: 10%;
+    }
+    to {
+        background-size: 60%;
+        background-position-x: center;
+    }
+}
+
+@keyframes home_h1 {
+    from {
+        transform: translateX(-800px);
+        font-size: small;
+    }
+    25% {
+        /* font-size: medium; */
+        transform: translateX(0px);
+        font-size: medium;
+    }
+    50% {
+    }
+    to {
+        transform: translateY(-256px);
+    }
+}
 .cursor-pointer {
     cursor: pointer;
+}
+
+.main-CTA {
+    font-size: 36px;
+    padding: 16px 32px;
+    box-shadow: 0px 8px 32px rgba(17, 203, 95, 0.4);
+    border-radius: 40px;
+    opacity: 0;
+    display: block;
+    border: none;
+    background-color: #11cb5f;
+    margin: auto;
+    animation-name: home_CTA;
+    animation-fill-mode: forwards !important;
+    animation-iteration-count: 1 !important;
+    animation-direction: normal !important;
+    animation-delay: 2.5s !important;
+    animation-timing-function: cubic-bezier(0.19, 1, 0.22, 1) !important;
+    animation-duration: 2.5s !important;
+}
+
+@keyframes home_CTA {
+    from {
+        transform: translateY(64px);
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+        transform: translateY(-64px);
+    }
 }
