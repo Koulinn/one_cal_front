@@ -10,7 +10,9 @@ function Home() {
 
     const isUserLogged = () => {
         if (requestStatus === 'success') {
-            return navigateTo('/calc')
+            navigateTo('/calc')
+
+            return <></>
         }
     }
 
