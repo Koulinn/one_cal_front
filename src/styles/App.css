@@ -52,3 +52,7 @@ html {
         top: -2px;
     }
 }
+
+.cursor-pointer {
+    cursor: pointer;
+}
