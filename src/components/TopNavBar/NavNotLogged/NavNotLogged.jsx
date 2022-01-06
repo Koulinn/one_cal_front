@@ -3,7 +3,7 @@ import Stack from '@mui/material/Stack'
 import TopNavigationItem from '../TopNavigationItem/TopNavigationItem'
 import CTAButton from '../../CTAButton/CTAButton'
 
-function TopNavItems() {
+function NavNotLogged() {
     return (
         <nav>
             <Stack spacing={3} direction='row'>
@@ -14,4 +14,4 @@ function TopNavItems() {
     )
 }
 
-export default TopNavItems
+export default NavNotLogged

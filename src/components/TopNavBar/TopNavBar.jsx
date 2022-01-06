@@ -1,7 +1,7 @@
 import React from 'react'
 import { Grid, Container } from '@mui/material'
 import LogoName from './LogoName/LogoName'
-import TopNavItems from './TopNavItems/TopNavItems'
+import NavNotLogged from './NavNotLogged/NavNotLogged'
 import topNavBarCSS from './topNavBarCSS.js'
 
 function TopNavBar() {
@@ -9,7 +9,7 @@ function TopNavBar() {
         <Grid item xs={12}>
             <Container sx={topNavBarCSS}>
                 <LogoName />
-                <TopNavItems />
+                <NavNotLogged />
             </Container>
         </Grid>
     )
