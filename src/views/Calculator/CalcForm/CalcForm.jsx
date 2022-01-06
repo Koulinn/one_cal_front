@@ -37,6 +37,7 @@ function CalcForm({ sendNewRequest, setSendNewRequest }) {
                     error={false}
                     value={name}
                     onChange={(e) => inputHandlers(e.target.value, 'name')}
+                    sx={{ mt: 3, mb: 2 }}
                 />
                 <TextField
                     id='calories'
@@ -47,19 +48,26 @@ function CalcForm({ sendNewRequest, setSendNewRequest }) {
                     error={false}
                     value={calories}
                     onChange={(e) => inputHandlers(e.target.value, 'calories')}
+                    sx={{ mt: 2, mb: 5 }}
                 />
-                <LocalizationProvider dateAdapter={AdapterDateFns}>
-                    <DateTimePicker
-                        renderInput={(props) => <TextField {...props} />}
-                        label='Time eaten'
-                        value={time_eaten}
-                        onChange={(value) => inputHandlers(value, 'time_eaten')}
-                    />
-                </LocalizationProvider>
+                <Box>
+                    <LocalizationProvider dateAdapter={AdapterDateFns}>
+                        <DateTimePicker
+                            renderInput={(props) => <TextField {...props} />}
+                            label='Time eaten'
+                            value={time_eaten}
+                            onChange={(value) =>
+                                inputHandlers(value, 'time_eaten')
+                            }
+                        />
+                    </LocalizationProvider>
+                </Box>
 
                 <CalcFormAlerts requestStatus={requestStatus} />
 
-                <Button type='submit'>Add meal</Button>
+                <Button sx={{ mt: 5 }} fullWidth type='submit'>
+                    Add meal
+                </Button>
             </Box>
         </Grid>
     )
