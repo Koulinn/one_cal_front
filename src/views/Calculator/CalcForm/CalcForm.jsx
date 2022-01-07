@@ -6,6 +6,7 @@ import LocalizationProvider from '@mui/lab/LocalizationProvider'
 import DateTimePicker from '@mui/lab/DateTimePicker'
 import useCalcForm from './useCalcForm.js'
 import CalcFormAlerts from './CalcFormAlerts.jsx'
+import CalcFormCSS from './CalcFormCSS.js'
 
 function CalcForm({ sendNewRequest, setSendNewRequest }) {
     const {
@@ -23,9 +24,14 @@ function CalcForm({ sendNewRequest, setSendNewRequest }) {
     }, [requestStatus])
 
     return (
-        <Grid item xs={6}>
-            <Box component='form' onSubmit={submitForm}>
-                <Typography component='h5' variant='h5' textAlign={'center'}>
+        <Grid item xs={6} sx={CalcFormCSS}>
+            <Box component='form' sx={{ px: 3 }} onSubmit={submitForm}>
+                <Typography
+                    component='h5'
+                    variant='h5'
+                    textAlign={'center'}
+                    sx={{ mt: 3 }}
+                >
                     Enter meal
                 </Typography>
                 <TextField
@@ -50,11 +56,11 @@ function CalcForm({ sendNewRequest, setSendNewRequest }) {
                     onChange={(e) => inputHandlers(e.target.value, 'calories')}
                     sx={{ mt: 2, mb: 5 }}
                 />
-                <Box>
+                <Box fullWidth id='date-picker-wrapper' sx={{ mt: 2 }}>
                     <LocalizationProvider dateAdapter={AdapterDateFns}>
                         <DateTimePicker
                             renderInput={(props) => <TextField {...props} />}
-                            label='Time eaten'
+                            label='Meal time'
                             value={time_eaten}
                             onChange={(value) =>
                                 inputHandlers(value, 'time_eaten')
@@ -65,7 +71,7 @@ function CalcForm({ sendNewRequest, setSendNewRequest }) {
 
                 <CalcFormAlerts requestStatus={requestStatus} />
 
-                <Button sx={{ mt: 5 }} fullWidth type='submit'>
+                <Button sx={{ mt: 5, mb: 3 }} fullWidth type='submit'>
                     Add meal
                 </Button>
             </Box>
