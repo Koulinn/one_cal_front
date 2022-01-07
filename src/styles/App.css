@@ -1,10 +1,13 @@
 html {
-    background-color: #f3faf4;
+    background-color: #11cb5f;
 }
 
 #layoutExternal {
     position: relative;
     height: 100vh;
+}
+
+.bg-home {
     background-image: url('../assets/SVGs/OneKcal_Illus_Home.svg');
     overflow: visible;
     background-position: center;
@@ -20,8 +23,7 @@ html {
 }
 
 .show {
-    color: black;
-    animation-name: fade_shrink;
+    animation-name: glow-card;
     animation-fill-mode: forwards !important;
     animation-iteration-count: 1 !important;
     animation-direction: normal !important;
@@ -30,8 +32,6 @@ html {
     animation-duration: 3s !important;
 }
 .hide {
-    display: none !important;
-    right: -64px;
 }
 
 #home {
@@ -48,18 +48,15 @@ html {
     animation-duration: 5s !important;
 }
 
-@keyframes fade_shrink {
-    from {
-        font-size: 40px;
-        opacity: 1;
-        right: -64px;
+@keyframes glow-card {
+    0% {
+        box-shadow: 0px 0px 32px rgba(194, 231, 203, 0.924);
     }
-    to {
-        font-size: 32px;
-        opacity: 0;
-        display: none;
-        right: -24px;
-        top: -2px;
+    50% {
+        box-shadow: 0px 0px 32px rgba(50, 235, 96, 0.924);
+    }
+    100% {
+        box-shadow: 0px 0px 32px rgba(194, 231, 203, 0.924);
     }
 }
 
@@ -122,4 +119,31 @@ html {
         opacity: 1;
         transform: translateY(-64px);
     }
+}
+
+#date-picker-wrapper > div.MuiFormControl-root {
+    width: 100%;
+}
+
+.card-primary p {
+    font-size: 40px;
+}
+
+.card-primary-inner-wrapper {
+    border: transparent 1px solid;
+    width: fit-content;
+    margin: auto;
+    box-shadow: 0px 0px 32px rgba(194, 231, 203, 0.924);
+    border-radius: 20px;
+}
+
+.card-secondary p {
+    font-size: 18px;
+}
+.card-secondary-inner-wrapper {
+    border: transparent 1px solid;
+    box-shadow: 0px 0px 32px rgba(208, 212, 209, 0.924);
+    border-radius: 20px;
+    width: fit-content;
+    margin: auto;
 }
