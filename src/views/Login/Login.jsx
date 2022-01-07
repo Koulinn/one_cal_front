@@ -6,7 +6,12 @@ import loginCSS from './loginCSS.js'
 function Login() {
     return (
         <Container sx={loginCSS}>
-            <Typography variant='h5' component='h5' textAlign={'center'}>
+            <Typography
+                variant='h5'
+                component='h5'
+                textAlign={'center'}
+                sx={{ mt: 3 }}
+            >
                 Login
             </Typography>
             <LoginForm />
