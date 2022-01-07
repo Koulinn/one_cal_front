@@ -1,49 +1,79 @@
 import React from 'react'
 import { Grid, Typography } from '@mui/material'
-import AddIcon from '@mui/icons-material/Add'
 
 import { Box } from '@mui/system'
 import useSimpleDashboard from './useSimpleDashboard.js'
 
 function SimpleDashboard({ calorie_total_today, calorie_total_yesterday }) {
-    const { showAddIcon } = useSimpleDashboard(calorie_total_today)
-
+    const { showEffect } = useSimpleDashboard(calorie_total_today)
+    console.log(calorie_total_today)
     return (
         <Grid item xs={6}>
-            <Typography component='h5' variant='h5' textAlign={'center'}>
-                Dashboard
-            </Typography>
             <Box
+                className='card-primary'
                 sx={{
-                    position: 'relative',
-                    width: 'fit-content',
-                    margin: 'auto',
+                    mb: 5,
                 }}
             >
-                <Typography component='h6' variant='h6' textAlign={'center'}>
-                    Calories ingested today:
-                </Typography>
-                <AddIcon
-                    className={showAddIcon}
-                    sx={{ position: 'absolute', top: '0px' }}
-                    fontSize={'large'}
-                    color='success'
-                />
+                <Box
+                    className={'card-primary-inner-wrapper ' + showEffect}
+                    sx={{ my: 3, px: 4 }}
+                >
+                    <Box
+                        sx={{
+                            position: 'relative',
+                            width: 'fit-content',
+                            margin: 'auto',
+                        }}
+                        // className={showAddIcon}
+                    >
+                        <Typography
+                            component='h4'
+                            variant='h4'
+                            textAlign={'center'}
+                            sx={{ mt: 2, mb: 3 }}
+                        >
+                            Today
+                        </Typography>
+                    </Box>
+                    <Typography
+                        component='p'
+                        variant='p'
+                        textAlign={'center'}
+                        sx={{ mb: 1 }}
+                    >
+                        {calorie_total_today
+                            ? `${calorie_total_today} Kcal`
+                            : `0000 Kcal`}
+                    </Typography>
+                </Box>
             </Box>
-            <Typography component='p' variant='p' textAlign={'center'}>
-                {calorie_total_today
-                    ? `${calorie_total_today} Kcal`
-                    : `Are you sure that you didn't eat something?`}
-            </Typography>
 
-            <Typography component='h6' variant='subtitle1' textAlign={'center'}>
-                Calories ingested yesterday:
-            </Typography>
-            <Typography component='p' variant='p' textAlign={'center'}>
-                {calorie_total_yesterday
-                    ? `${calorie_total_yesterday} Kcal`
-                    : 'Did you starve yesterday?'}
-            </Typography>
+            <Box className='card-secondary'>
+                <Box
+                    className='card-secondary-inner-wrapper'
+                    sx={{ px: 3, pb: 2 }}
+                >
+                    <Typography
+                        component='h5'
+                        variant='h5'
+                        textAlign={'center'}
+                        sx={{ mt: 2 }}
+                    >
+                        Yesterday
+                    </Typography>
+                    <Typography
+                        component='p'
+                        variant='p'
+                        textAlign={'center'}
+                        sx={{ mt: 2 }}
+                    >
+                        {calorie_total_yesterday
+                            ? `${calorie_total_yesterday} Kcal`
+                            : 'Did you forget it again...'}
+                    </Typography>
+                </Box>
+            </Box>
         </Grid>
     )
 }
