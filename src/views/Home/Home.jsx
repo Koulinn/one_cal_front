@@ -3,7 +3,6 @@ import useUser from '../../customHooks/useUser/useUser.js'
 import { useNavigate } from 'react-router-dom'
 import { Container, Typography } from '@mui/material'
 import homeCSS from './homeCSS.js'
-import { Box } from '@mui/system'
 
 function Home() {
     const { requestStatus } = useUser()
