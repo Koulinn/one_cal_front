@@ -147,3 +147,29 @@ html {
     width: fit-content;
     margin: auto;
 }
+
+@keyframes home_h1_mobile {
+    from {
+        transform: translateX(-40px);
+        font-size: small;
+    }
+    25% {
+        /* font-size: medium; */
+        transform: translateX(0px);
+        font-size: medium;
+    }
+    50% {
+    }
+    to {
+        transform: translateY(-128px);
+    }
+}
+@media (max-width: 640px) {
+    h1 {
+        font-weight: 700 !important;
+        animation-name: home_h1_mobile !important;
+    }
+    .main-CTA {
+        font-size: 28px;
+    }
+}
