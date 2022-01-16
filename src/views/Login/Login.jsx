@@ -5,7 +5,7 @@ import loginCSS from './loginCSS.js'
 
 function Login() {
     return (
-        <Container sx={loginCSS}>
+        <Container className='login' sx={loginCSS}>
             <Typography
                 variant='h5'
                 component='h5'

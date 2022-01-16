@@ -4,8 +4,8 @@ import layoutInternalCSS from './layoutInternalCSS.js'
 
 function LayoutInternal({ children }) {
     return (
-        <Grid item xs={12}>
-            <Container>
+        <Grid item className='layoutInternal' xs={12}>
+            <Container sx={{ backgroundColor: '#f3faf4' }}>
                 <Grid container sx={layoutInternalCSS}>
                     {children}
                 </Grid>

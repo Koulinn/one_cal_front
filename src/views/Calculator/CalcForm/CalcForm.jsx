@@ -7,6 +7,7 @@ import DateTimePicker from '@mui/lab/DateTimePicker'
 import useCalcForm from './useCalcForm.js'
 import CalcFormAlerts from './CalcFormAlerts.jsx'
 import CalcFormCSS from './CalcFormCSS.js'
+import useQueries from '../../../customHooks/useQueries/useQueries.js'
 
 function CalcForm({ sendNewRequest, setSendNewRequest }) {
     const {
@@ -15,6 +16,7 @@ function CalcForm({ sendNewRequest, setSendNewRequest }) {
         submitForm,
         requestStatus,
     } = useCalcForm()
+    const { isTablet } = useQueries()
 
     useEffect(() => {
         if (requestStatus === 'success') {
@@ -24,7 +26,13 @@ function CalcForm({ sendNewRequest, setSendNewRequest }) {
     }, [requestStatus])
 
     return (
-        <Grid item xs={6} sx={CalcFormCSS}>
+        <Grid
+            item
+            sm={12}
+            md={6}
+            className={isTablet ? 'simpleDashboard-mobile' : ''}
+            sx={CalcFormCSS}
+        >
             <Box component='form' sx={{ px: 3 }} onSubmit={submitForm}>
                 <Typography
                     component='h5'

@@ -73,7 +73,7 @@ html {
 
 @keyframes home_h1 {
     from {
-        transform: translateX(-800px);
+        transform: translateX(-256px);
         font-size: small;
     }
     25% {
@@ -172,4 +172,16 @@ html {
     .main-CTA {
         font-size: 28px;
     }
+}
+/* #layoutExternal > #home {
+    position: relative;
+    height: 100vh;
+} */
+
+#mobile-menu > .MuiPaper-root {
+    left: 236px !important;
+}
+
+.simpleDashboard-mobile {
+    margin: 32px auto !important;
 }

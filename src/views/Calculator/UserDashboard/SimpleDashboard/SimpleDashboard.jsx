@@ -1,14 +1,19 @@
 import React from 'react'
 import { Grid, Typography } from '@mui/material'
-
 import { Box } from '@mui/system'
 import useSimpleDashboard from './useSimpleDashboard.js'
+import useQueries from '../../../../customHooks/useQueries/useQueries.js'
 
 function SimpleDashboard({ calorie_total_today, calorie_total_yesterday }) {
     const { showEffect } = useSimpleDashboard(calorie_total_today)
-    console.log(calorie_total_today)
+    const { isTablet } = useQueries()
     return (
-        <Grid item xs={6}>
+        <Grid
+            item
+            sm={12}
+            md={6}
+            className={isTablet ? 'simpleDashboard-mobile' : ''}
+        >
             <Box
                 className='card-primary'
                 sx={{
@@ -17,7 +22,7 @@ function SimpleDashboard({ calorie_total_today, calorie_total_yesterday }) {
             >
                 <Box
                     className={'card-primary-inner-wrapper ' + showEffect}
-                    sx={{ my: 3, px: 4 }}
+                    sx={{ mb: 3, px: 4 }}
                 >
                     <Box
                         sx={{

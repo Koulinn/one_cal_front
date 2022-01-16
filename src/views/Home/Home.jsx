@@ -1,13 +1,14 @@
 import React, { useEffect } from 'react'
 import useUser from '../../customHooks/useUser/useUser.js'
 import { useNavigate } from 'react-router-dom'
-import { Container, Typography, useMediaQuery } from '@mui/material'
+import { Container, Typography } from '@mui/material'
 import homeCSS from './homeCSS.js'
+import useQueries from '../../customHooks/useQueries/useQueries.js'
 
 function Home() {
     const { requestStatus } = useUser()
     const navigateTo = useNavigate()
-    const isTablet = useMediaQuery('(max-width:640px)')
+    const isTablet = useQueries()
 
     const isUserLogged = () => {
         if (requestStatus === 'success') {
@@ -26,14 +27,17 @@ function Home() {
         <Container id='home' sx={homeCSS}>
             <Typography
                 component={'h1'}
-                variant={isTablet ? 'h4' : 'h1'}
+                variant={isTablet?.isTablet ? 'h4' : 'h1'}
                 textAlign={'center'}
             >
-                Let's burn kcalories
+                Burn kcalories
             </Typography>
 
-            <button className='main-CTA cursor-pointer'>
-                Let's control calories{' '}
+            <button
+                className='main-CTA cursor-pointer'
+                onClick={() => navigateTo('/register')}
+            >
+                Let's get started
             </button>
         </Container>
     )
