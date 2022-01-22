@@ -173,14 +173,6 @@ html {
         font-size: 28px;
     }
 }
-/* #layoutExternal > #home {
-    position: relative;
-    height: 100vh;
-} */
-
-#mobile-menu > .MuiPaper-root {
-    left: 236px !important;
-}
 
 .simpleDashboard-mobile {
     margin: 32px auto !important;
