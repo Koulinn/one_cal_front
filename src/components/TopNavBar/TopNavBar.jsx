@@ -23,9 +23,9 @@ function TopNavBar() {
             <Container sx={topNavBarCSS}>
                 <LogoName />
                 {userInfo && <NavLogged {...userInfo} setUser={setUser} />}
-                {!user && !isTablet?.isTablet && <NavNotLogged />}
+                {!userInfo && !isTablet?.isTablet && <NavNotLogged />}
 
-                {!user && isTablet?.isTablet && <NavMobile />}
+                {!userInfo && isTablet?.isTablet && <NavMobile />}
             </Container>
         </Grid>
     )
