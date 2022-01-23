@@ -9,20 +9,20 @@ import useQueries from '../../customHooks/useQueries/useQueries.js'
 import NavMobile from './NavMobile/NavMobile'
 
 function TopNavBar() {
-    const { userData } = useUser()
-    const [user, setUser] = useState()
+    const { userData, user } = useUser()
+    const [userInfo, setUser] = useState()
     const isTablet = useQueries()
 
     useEffect(() => {
         if (userData) {
-            setUser(userData)
+            setUser({ userData, user })
         }
     }, [userData])
     return (
         <Grid item xs={12}>
             <Container sx={topNavBarCSS}>
                 <LogoName />
-                {user && <NavLogged {...user} setUser={setUser} />}
+                {userInfo && <NavLogged {...userInfo} setUser={setUser} />}
                 {!user && !isTablet?.isTablet && <NavNotLogged />}
 
                 {!user && isTablet?.isTablet && <NavMobile />}

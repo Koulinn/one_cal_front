@@ -1,14 +1,15 @@
 import React, { useState } from 'react'
 import Stack from '@mui/material/Stack'
-import { Avatar, Menu, MenuItem } from '@mui/material'
+import { Avatar, Menu, MenuItem, Typography } from '@mui/material'
 import FirebaseAuthService from '../../../firebase/firebase_auth.js'
 
 const { logoutUser } = FirebaseAuthService
 
-function NavLogged({ email, setUser }) {
+function NavLogged({ userData, user, setUser, ...props }) {
     const [anchorMenu, setAnchorMenu] = React.useState(null)
     const open = Boolean(anchorMenu)
 
+    console.log(userData, user.photoURL)
     const handleClick = (event) => {
         setAnchorMenu(event.currentTarget)
     }
@@ -19,13 +20,23 @@ function NavLogged({ email, setUser }) {
     return (
         <nav>
             <Stack spacing={3} direction='row'>
+                <Typography
+                    component='h6'
+                    variant='subtitle2'
+                    sx={{ margin: 'auto' }}
+                >
+                    {userData.name || user.displayName
+                        ? userData.name + userData.surname || user.displayName
+                        : ''}
+                </Typography>
                 <Avatar
                     className='cursor-pointer'
-                    alt={email}
+                    alt={userData.email}
                     onClick={handleClick}
                     aria-controls={open ? 'basic-menu' : undefined}
                     aria-haspopup='true'
                     aria-expanded={open ? 'true' : undefined}
+                    src={userData.avatar || user.photoURL}
                 />
                 <Menu
                     id='basic-menu'
