@@ -9,7 +9,7 @@ function NavLogged({ userData, user, setUser, ...props }) {
     const [anchorMenu, setAnchorMenu] = React.useState(null)
     const open = Boolean(anchorMenu)
 
-    console.log(userData, user.photoURL)
+
     const handleClick = (event) => {
         setAnchorMenu(event.currentTarget)
     }
