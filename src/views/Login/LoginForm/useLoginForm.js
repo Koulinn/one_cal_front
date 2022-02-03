@@ -51,6 +51,7 @@ const useLoginForm = () => {
                 if (res.data?.success) {
                     setRequestStatus('success')
                     setTimeout(() => navigateTo('/calc'), 5000)
+                    return;
                 } else {
                     setRequestStatus('userNotExists')
                     resetRequestStatus(setRequestStatus)
