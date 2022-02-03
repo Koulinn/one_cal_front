@@ -4,7 +4,7 @@ html {
 
 #layoutExternal {
     position: relative;
-    height: 100vh;
+    min-height: 100vh;
 }
 
 .bg-home {
@@ -73,18 +73,18 @@ html {
 
 @keyframes home_h1 {
     from {
-        transform: translateX(-256px);
+        transform: translateX(80px);
         font-size: small;
     }
     25% {
-        /* font-size: medium; */
+        font-size: medium;
         transform: translateX(0px);
         font-size: medium;
     }
     50% {
     }
     to {
-        transform: translateY(-256px);
+        transform: translateY(-124px);
     }
 }
 .cursor-pointer {
