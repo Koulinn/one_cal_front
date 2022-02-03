@@ -1,46 +1,45 @@
 import React, { useEffect } from 'react'
 import useUser from '../../customHooks/useUser/useUser.js'
 import { useNavigate } from 'react-router-dom'
-import { Container, Typography } from '@mui/material'
-import homeCSS from './homeCSS.js'
-import useQueries from '../../customHooks/useQueries/useQueries.js'
+import { Container, Typography } from "@mui/material";
+import useQueries from "../../customHooks/useQueries/useQueries.js";
 
 function Home() {
-    const { requestStatus } = useUser()
-    const navigateTo = useNavigate()
-    const isTablet = useQueries()
+  const { requestStatus } = useUser();
+  const navigateTo = useNavigate();
+  const isTablet = useQueries();
 
-    const isUserLogged = () => {
-        if (requestStatus === 'success') {
-            navigateTo('/calc')
+  const isUserLogged = () => {
+    if (requestStatus === "success") {
+      navigateTo("/calc");
 
-            return <></>
-        }
+      return <></>;
     }
+  };
 
-    useEffect(() => {
-        isUserLogged()
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [requestStatus])
+  useEffect(() => {
+    isUserLogged();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [requestStatus]);
 
-    return (
-        <Container id='home' sx={homeCSS}>
-            <Typography
-                component={'h1'}
-                variant={isTablet?.isTablet ? 'h4' : 'h1'}
-                textAlign={'center'}
-            >
-                Burn kcalories
-            </Typography>
+  return (
+    <Container id='home'>
+      <Typography
+        component={"h1"}
+        variant={isTablet?.isTablet ? "h4" : "h1"}
+        textAlign={"center"}
+      >
+        Burn kcalories
+      </Typography>
 
-            <button
-                className='main-CTA cursor-pointer'
-                onClick={() => navigateTo('/register')}
-            >
-                Let's get started
-            </button>
-        </Container>
-    )
+      <button
+        className='main-CTA cursor-pointer'
+        onClick={() => navigateTo("/register")}
+      >
+        Let's get started
+      </button>
+    </Container>
+  );
 }
 
 export default Home
