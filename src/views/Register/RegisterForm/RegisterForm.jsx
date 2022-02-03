@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Box, TextField, Typography } from "@mui/material";
 import useRegisterForm from "./useRegisterForm.js";
 import RegisterAlerts from "./RegisterAlerts.jsx";
@@ -15,6 +15,21 @@ function RegisterForm() {
     isValidEmail,
     handleGoogleSignUp,
   ] = useRegisterForm();
+  const [disableRegister, setDisableRegister] = useState(true);
+  const [formValues, setFormValues] = useState({ email: "", password: "" });
+
+  const handleRegisterBtnStatus = () => {
+    const { email, password } = formValues;
+    if (email !== "" && isValidEmail && password !== "" && isValidPassword) {
+      setDisableRegister(false);
+    } else {
+      setDisableRegister(true);
+    }
+  };
+
+  useEffect(() => {
+    handleRegisterBtnStatus();
+  }, [isValidEmail, isValidPassword, requestStatus]);
 
   return (
     <Box component='form' sx={{ mt: 2 }} onSubmit={handleRegisterForm}>
@@ -25,7 +40,10 @@ function RegisterForm() {
         fullWidth
         type='email'
         error={!isValidEmail}
-        onChange={(e) => emailValidation(e)}
+        onChange={(e) => {
+          setFormValues({ ...formValues, email: e.target.value });
+          emailValidation(e);
+        }}
         sx={{ mt: 3, mb: 2 }}
       />
       <TextField
@@ -34,18 +52,16 @@ function RegisterForm() {
         variant='standard'
         fullWidth
         type={"password"}
-        onChange={(e) => handlePassword(e.target.value)}
+        onChange={(e) => {
+          setFormValues({ ...formValues, password: e.target.value });
+          handlePassword(e.target.value);
+        }}
         error={!isValidPassword}
         helperText={passwordMsg}
         sx={{ mt: 2, mb: 3 }}
       />
       <RegisterAlerts requestStatus={requestStatus} />
-      <Button
-        type='submit'
-        sx={{ mt: 3 }}
-        fullWidth
-        disabled={!isValidPassword || !isValidEmail}
-      >
+      <Button type='submit' sx={{ mt: 3 }} fullWidth disabled={disableRegister}>
         Register!
       </Button>
       <Typography
