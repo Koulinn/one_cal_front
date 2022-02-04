@@ -13,7 +13,7 @@ function Home() {
     if (requestStatus === "success") {
       navigateTo("/calc");
 
-      return <></>;
+      return;
     }
   };
 
@@ -26,7 +26,7 @@ function Home() {
     <Container id='home'>
       <Typography
         component={"h1"}
-        variant={isTablet?.isTablet ? "h4" : "h1"}
+        variant={isTablet?.isTablet ? "h4" : "h2"}
         textAlign={"center"}
       >
         Burn kcalories
