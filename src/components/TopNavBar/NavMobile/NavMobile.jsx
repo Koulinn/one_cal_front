@@ -17,45 +17,45 @@ function NavMobile() {
     }
 
     return (
-        <nav>
-            <Stack>
-                <MenuIcon
-                    className='cursor-pointer'
-                    onClick={handleClick}
-                    aria-controls={open ? 'mobile-menu' : undefined}
-                    aria-haspopup='true'
-                    aria-expanded={open ? 'true' : undefined}
-                    fontSize='large'
-                />
-                <Menu
-                    id='mobile-menu'
-                    anchorEl={anchorMenu}
-                    open={open}
-                    onClose={handleClose}
-                    MenuListProps={{
-                        'aria-labelledby': 'basic-button',
-                    }}
-                >
-                    <MenuItem
-                        onClick={() => {
-                            handleClose()
-                            navigateTo('login')
-                        }}
-                    >
-                        Login
-                    </MenuItem>
-                    <MenuItem
-                        onClick={() => {
-                            handleClose()
-                            navigateTo('register')
-                        }}
-                    >
-                        Register
-                    </MenuItem>
-                </Menu>
-            </Stack>
-        </nav>
-    )
+      <nav>
+        <Stack>
+          <MenuIcon
+            className='cursor-pointer'
+            onClick={handleClick}
+            aria-controls={open ? "mobile-menu" : undefined}
+            aria-haspopup='true'
+            aria-expanded={open ? "true" : undefined}
+            fontSize='large'
+          />
+          <Menu
+            id='mobile-menu'
+            anchorEl={anchorMenu}
+            open={open}
+            onClose={handleClose}
+            MenuListProps={{
+              "aria-labelledby": "basic-button",
+            }}
+          >
+            <MenuItem
+              onClick={() => {
+                navigateTo("login");
+                handleClose();
+              }}
+            >
+              Login
+            </MenuItem>
+            <MenuItem
+              onClick={() => {
+                handleClose();
+                navigateTo("register");
+              }}
+            >
+              Register
+            </MenuItem>
+          </Menu>
+        </Stack>
+      </nav>
+    );
 }
 
 export default NavMobile
