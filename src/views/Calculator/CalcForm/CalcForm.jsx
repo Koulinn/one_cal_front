@@ -81,7 +81,7 @@ function CalcForm({ sendNewRequest, setSendNewRequest }) {
             sx={{ mt: 5, mb: 3 }}
             fullWidth
             type='submit'
-            disabled={name === "" ? true : false}
+            disabled={name === "" || calories < 0 ? true : false}
           >
             Add meal
           </Button>
