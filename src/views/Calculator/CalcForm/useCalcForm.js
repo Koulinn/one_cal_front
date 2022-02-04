@@ -19,28 +19,28 @@ const useCalcForm = () => {
     }
 
     const submitForm = async (e) => {
-        e.preventDefault()
-        try {
-            setRequestStatus('loading')
-            const res = await sendUserMeal(formValues)
+      e.preventDefault();
+      try {
+        setRequestStatus("loading");
+        const res = await sendUserMeal(formValues);
 
-            if (res.status === 201) {
-                setRequestStatus('success')
-                setFormValues({
-                    name: '',
-                    calories: '',
-                    time_eaten: new Date(),
-                })
-                resetRequestStatus(setRequestStatus)
-            } else {
-                setRequestStatus('failure')
-                resetRequestStatus(setRequestStatus)
-            }
-        } catch (error) {
-            setRequestStatus('serverFailure')
-            resetRequestStatus(setRequestStatus)
-            console.log(error)
+        if (res.status === 201) {
+          setRequestStatus("success");
+          setFormValues({
+            name: "",
+            calories: "",
+            time_eaten: new Date(),
+          });
+          resetRequestStatus(setRequestStatus);
+        } else {
+          setRequestStatus("failure");
+          resetRequestStatus(setRequestStatus);
         }
+      } catch (error) {
+        setRequestStatus("serverFailure");
+        resetRequestStatus(setRequestStatus);
+        console.log(error);
+      }
     }
 
     return { formValues, inputHandlers, submitForm, requestStatus }
