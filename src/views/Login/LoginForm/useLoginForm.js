@@ -26,6 +26,7 @@ const useLoginForm = () => {
             if (res.data.success) {
                 setRequestStatus('success')
                 setTimeout(() => navigateTo('/calc'), 5000)
+                return
             } else {
                 setRequestStatus('failure')
                 resetRequestStatus(setRequestStatus)
@@ -34,6 +35,7 @@ const useLoginForm = () => {
             if (error.code.includes('wrong-password')) {
                 setRequestStatus('wrongPassword')
                 resetRequestStatus(setRequestStatus)
+                return
             } else {
                 setRequestStatus('failure')
                 resetRequestStatus(setRequestStatus)
@@ -51,7 +53,7 @@ const useLoginForm = () => {
                 if (res.data?.success) {
                     setRequestStatus('success')
                     setTimeout(() => navigateTo('/calc'), 5000)
-                    return;
+                    return
                 } else {
                     setRequestStatus('userNotExists')
                     resetRequestStatus(setRequestStatus)

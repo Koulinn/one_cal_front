@@ -77,6 +77,7 @@ const useRegisterForm = () => {
             if (res.status === 201) {
                 setRequestStatus('success')
                 setTimeout(() => navigateTo('/calc'), 5000)
+                return
             } else {
                 setRequestStatus('failure')
                 resetRequestStatus(setRequestStatus)
