@@ -69,8 +69,7 @@ const getUserMealData = async (setUserMealData, setRequestStatus) => {
 
 const updateAvatar = async (file) => {
     try {
-        const res = await axios.put(`${SERVER_URL}/user/avatar`, file)
-        console.log(res, 'from updateAvatar')
+        await axios.put(`${SERVER_URL}/user/avatar`, file)
         return true
     } catch (error) {
         console.log(error)
