@@ -2,12 +2,12 @@ import React, { useState } from 'react'
 import Stack from '@mui/material/Stack'
 import { Avatar, Menu, MenuItem, Typography } from '@mui/material'
 import FirebaseAuthService from '../../../firebase/firebase_auth.js'
-import useQueries from "../../../customHooks/useQueries/useQueries.js";
+import useQueries from '../../../customHooks/useQueries/useQueries.js'
 import { useNavigate } from 'react-router-dom'
 
 const { logoutUser } = FirebaseAuthService
 
-function NavLogged({ userData, user, setUser, ...props }) {
+function NavLogged({ userData, user }) {
     const [anchorMenu, setAnchorMenu] = React.useState(null)
     const open = Boolean(anchorMenu)
     const { isTablet } = useQueries()
@@ -29,20 +29,20 @@ function NavLogged({ userData, user, setUser, ...props }) {
                         variant='subtitle2'
                         sx={{ margin: 'auto' }}
                     >
-                        {userData.name || user.displayName
-                            ? userData.name + userData.surname ||
-                              user.displayName
+                        {userData?.name || user?.displayName
+                            ? userData?.name + userData?.surname ||
+                              user?.displayName
                             : ''}
                     </Typography>
                 )}
                 <Avatar
                     className='cursor-pointer'
-                    alt={userData.email}
+                    alt={userData?.email}
                     onClick={handleClick}
                     aria-controls={open ? 'basic-menu' : undefined}
                     aria-haspopup='true'
                     aria-expanded={open ? 'true' : undefined}
-                    src={userData.avatar || user.photoURL}
+                    src={userData?.avatar || user?.photoURL}
                 />
                 <Menu
                     id='basic-menu'
@@ -65,7 +65,6 @@ function NavLogged({ userData, user, setUser, ...props }) {
                     <MenuItem
                         onClick={async () => {
                             await logoutUser()
-                            setUser(null)
                             handleClose()
                         }}
                     >

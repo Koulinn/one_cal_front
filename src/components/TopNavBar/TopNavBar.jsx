@@ -10,22 +10,16 @@ import NavMobile from './NavMobile/NavMobile'
 
 function TopNavBar() {
     const { userData, user } = useUser()
-    const [userInfo, setUser] = useState()
     const isTablet = useQueries()
 
-    useEffect(() => {
-        if (userData) {
-            setUser({ userData, user })
-        }
-    }, [userData])
     return (
         <Grid item xs={12}>
             <Container sx={topNavBarCSS}>
                 <LogoName />
-                {userInfo && <NavLogged {...userInfo} setUser={setUser} />}
-                {!userInfo && !isTablet?.isTablet && <NavNotLogged />}
+                {user && <NavLogged userData={userData} user={user} />}
+                {!user && !isTablet?.isTablet && <NavNotLogged />}
 
-                {!userInfo && isTablet?.isTablet && <NavMobile />}
+                {!user && isTablet?.isTablet && <NavMobile />}
             </Container>
         </Grid>
     )
