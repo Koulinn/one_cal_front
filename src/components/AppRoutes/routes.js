@@ -3,6 +3,7 @@ import Register from '../../views/Register/Register'
 import Home from '../../views/Home/Home'
 import Calculator from '../../views/Calculator/Calculator'
 import NotFound from '../../views/NotFound/NotFound'
+import Profile from '../../views/Profile/Profile'
 
 const routes = [
     {
@@ -20,6 +21,10 @@ const routes = [
     {
         path: '/calc',
         component: Calculator,
+    },
+    {
+        path: '/profile',
+        component: Profile,
     },
     {
         path: '*',

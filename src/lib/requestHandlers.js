@@ -67,11 +67,35 @@ const getUserMealData = async (setUserMealData, setRequestStatus) => {
     }
 }
 
+const updateAvatar = async (file) => {
+    try {
+        const res = await axios.put(`${SERVER_URL}/user/avatar`, file)
+        console.log(res, 'from updateAvatar')
+        return true
+    } catch (error) {
+        console.log(error)
+        return error
+    }
+}
+
+const updateUserProfile = async (profile) => {
+    try {
+        const res = await axios.put(`${SERVER_URL}/user`, profile)
+        console.log(res, 'from updateUser')
+        return true
+    } catch (error) {
+        console.log(error)
+        return error
+    }
+}
+
 const requestHandlers = {
     createUser,
     getUserData,
     sendUserMeal,
     getUserMealData,
+    updateAvatar,
+    updateUserProfile,
 }
 
 export default requestHandlers
