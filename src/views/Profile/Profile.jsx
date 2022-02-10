@@ -20,17 +20,19 @@ function Profile() {
     })
     const [avatarPreview, setAvatarPreview] = useState(null)
     const [avatarFormData, setAvatarFormData] = useState(null)
+    const [isEnabled, setIsEnabled] = useState(false)
 
     if (!userData) {
         return <div>Loading</div>
     }
 
-    // const { name, surname, avatar, birth_date } = userData
+    const { name, surname, avatar, birth_date } = userData
 
     const createAvatarPreview = (e) => {
         const file = e.target.files[0]
         const imgPrevUrl = URL.createObjectURL(file)
         setAvatarPreview(imgPrevUrl)
+        setIsEnabled(true)
 
         const form = new FormData()
         form.append('avatar', file)
@@ -43,13 +45,11 @@ function Profile() {
 
     const updateProfile = async (e) => {
         e.preventDefault()
+
         try {
-            // if (avatarFormData) {
-            //     const res = await updateAvatar(avatarFormData)
-            //     console.log(res, 'from updateProfile')
-            // }
-            const res = await updateProfile(formValues)
-            console.log(res, 'from updateProfile')
+            if (avatarFormData) {
+                await updateAvatar(avatarFormData)
+            }
         } catch (error) {
             console.log(error)
         }
@@ -67,11 +67,7 @@ function Profile() {
                     borderRadius: `20px`,
                 }}
             >
-                <Box
-                    component='form'
-                    sx={{ px: 3 }}
-                    onSubmit={(e) => updateProfile(e)}
-                >
+                <Box component='form' sx={{ px: 3 }} onSubmit={updateProfile}>
                     <Typography
                         component='h5'
                         variant='h5'
@@ -84,22 +80,22 @@ function Profile() {
                         <Avatar
                             alt={formValues.surname || 'Without avatar'}
                             className='cursor-pointer'
-                            src={avatarPreview || ''}
+                            src={avatarPreview || avatar || 'A'}
                             sx={{
                                 margin: 'auto',
                                 mt: 3,
-                                width: '64px',
-                                height: '64px',
+                                width: '128px',
+                                height: '128px',
                             }}
                         />
                         <input
                             id='avatar'
                             type='file'
                             hidden
-                            onChange={(e) => createAvatarPreview(e)}
+                            onChange={createAvatarPreview}
                         />
                     </label>
-                    <TextField
+                    {/* <TextField
                         id='name'
                         label='Name'
                         variant='standard'
@@ -107,9 +103,6 @@ function Profile() {
                         type='text'
                         error={false}
                         value={formValues.name}
-                        onChange={(e) => {
-                            handleInput(e.target.value, 'name')
-                        }}
                         sx={{ mt: 3, mb: 2 }}
                     />
                     <TextField
@@ -120,7 +113,9 @@ function Profile() {
                         type='text'
                         error={false}
                         value={formValues.surname}
-                        onChange={(e) => handleInput(e.target.value, 'surname')}
+                        onChange={(e) => {
+                            // handleInput(e.target.value, 'surname')
+                        }}
                         sx={{ mt: 3, mb: 2 }}
                     />
                     <TextField
@@ -131,13 +126,18 @@ function Profile() {
                         type='text'
                         error={false}
                         value={formValues.birth_date}
-                        onChange={(e) =>
-                            handleInput(e.target.value, 'birth_date')
-                        }
+                        onChange={(e) => {
+                            // handleInput(e.target.value, 'birth_date')
+                        }}
                         sx={{ mt: 3, mb: 2 }}
-                    />
+                    /> */}
 
-                    <Button sx={{ mt: 5, mb: 3 }} fullWidth type='submit'>
+                    <Button
+                        sx={{ mt: 5, mb: 3 }}
+                        fullWidth
+                        type='submit'
+                        disabled={!isEnabled}
+                    >
                         Update
                     </Button>
                 </Box>
