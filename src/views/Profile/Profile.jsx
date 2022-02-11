@@ -22,12 +22,6 @@ function Profile() {
     const [avatarFormData, setAvatarFormData] = useState(null)
     const [isEnabled, setIsEnabled] = useState(false)
 
-    if (!userData) {
-        return <div>Loading</div>
-    }
-
-    const { name, surname, avatar, birth_date } = userData
-
     const createAvatarPreview = (e) => {
         const file = e.target.files[0]
         const imgPrevUrl = URL.createObjectURL(file)
@@ -80,7 +74,7 @@ function Profile() {
                         <Avatar
                             alt={formValues.surname || 'Without avatar'}
                             className='cursor-pointer'
-                            src={avatarPreview || avatar || 'A'}
+                            src={avatarPreview || userData?.avatar || 'A'}
                             sx={{
                                 margin: 'auto',
                                 mt: 3,
