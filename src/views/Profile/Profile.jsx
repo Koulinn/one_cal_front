@@ -21,6 +21,7 @@ function Profile() {
     const [avatarPreview, setAvatarPreview] = useState(null)
     const [avatarFormData, setAvatarFormData] = useState(null)
     const [isEnabled, setIsEnabled] = useState(false)
+    
 
     const createAvatarPreview = (e) => {
         const file = e.target.files[0]
@@ -59,6 +60,8 @@ function Profile() {
                 sx={{
                     boxShadow: `0px 0px 32px rgba(0, 0, 0, 0.15)`,
                     borderRadius: `20px`,
+                    margin: 'auto',
+                    width: isTablet ? '100%' : 'auto',
                 }}
             >
                 <Box component='form' sx={{ px: 3 }} onSubmit={updateProfile}>
